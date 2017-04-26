@@ -1,0 +1,5 @@
+name = MPI additions to Drupal LDAP module
+description = Provides MPI specific code customisations to the Drupal LDAP module
+core = 7.x
+dependencies[] = ldap_authentication
+version = 7.x-1.0-alpha

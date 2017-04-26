@@ -1,0 +1,18 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the MPI LDAP additions module.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function mpi_ldap_additions_install() {
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function mpi_ldap_additions_uninstall() {
+}

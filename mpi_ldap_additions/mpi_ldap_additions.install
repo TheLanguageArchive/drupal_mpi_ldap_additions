@@ -8,9 +8,25 @@
 /**
  * Implements hook_install().
  */
-function mpi_ldap_additions_install() {
+function mpi_ldap_additions_enable() {
+  watchdog('mpi_ldap_additions', "Configuring LDAP servers");  
+  $query =  db_update('ldap_servers')
+    ->fields(array(
+      'ldap_to_drupal_user' => '$parts = explode("@", $name); if (count($parts) == 2) {print $parts[0];} else {print $name;}',
+        'account_name_attr' => NULL,
+    ))
+    ->condition('sid', 'MPI_LDAP', 'LIKE')
+    ->execute();
+  
+    db_update('ldap_servers')
+    ->fields(array(
+      'ldap_to_drupal_user' => 'if (strpos($name, "@") === false) {print $name . "@mpi.nl";} else {print $name;}'
+    ))
+    ->condition('sid', 'lux17_ldap', 'LIKE')
+    ->execute();
+  
+  watchdog('mpi_ldap_additions', "LDAP servers configured");
 }
-
 /**
  * Implements hook_uninstall().
  */
